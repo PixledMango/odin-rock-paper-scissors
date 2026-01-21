@@ -1,3 +1,61 @@
+const rockButton = document.querySelector(".rock-button");
+const paperButton = document.querySelector(".paper-button")
+const scissorsButton = document.querySelector(".scissors-button")
+
+const displayText = document.querySelector(".display-text")
+const scorecard = document.querySelector(".scorecard")
+
+
+rockButton.addEventListener("click", () => {
+    playRound("rock")
+});
+paperButton.addEventListener("click", () => {
+    playRound("paper")
+})
+scissorsButton.addEventListener("click", () => {
+    playRound("scissors")
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let playerScore = 0
+let computerScore = 0
+let numberOfRounds = 0
+
+
+function playRound(selectedObject) {
+    if (numberOfRounds >= 5)
+        return
+
+    let computerChoice = getComputerChoice()
+    let playerChoice = selectedObject
+    decideWinner(computerChoice, playerChoice)
+    updateScorecard()
+    numberOfRounds++
+
+    if (numberOfRounds >= 5)
+        endGmaeMessage()
+}
+
+function updateScorecard() {
+    scorecard.textContent = playerScore + " - " + computerScore
+}
+
 function getComputerChoice() {
     let randomNum = Math.random()
     if (randomNum < (1 / 3))
@@ -8,40 +66,27 @@ function getComputerChoice() {
         return "scissors"
 }
 
-function getPlayerChoice() {
-    return prompt("Do you choose rock, paper, or scissors?").toLowerCase()
-}
 
 function decideWinner(computer, player) {
     if (((player == "rock") & (computer == "scissors")) || ((player == "scissors") & (computer == "paper")) || ((player == "paper") & (computer == "rock"))) {
-        console.log("You Win!")
+        displayText.textContent = "You Win!"
         playerScore++
     }
     else if (player == computer) {
-        console.log("It's a Tie!")
+        displayText.textContent = "It's a Tie!"
     }
     else {
-        console.log("You Lose!")
+        displayText.textContent = "You Lose!"
         computerScore++
     }
 }
 
+
 function endGmaeMessage() {
     if (playerScore > computerScore)
-        console.log("Congrats! You Won!")
+        displayText.textContent = "Congrats! You Won!"
     else if (computerScore > playerScore)
-        console.log("You lost. Better luck next time.")
+        displayText.textContent = "You lost. Better luck next time."
     else
-        console.log("It was a tie.")
+        displayText.textContent = "It was a tie."
 }
-
-
-let computerScore = 0
-let playerScore = 0
-
-for (let i = 0; i < 5; i++) {
-    let computerChoice = getComputerChoice()
-    let playerChoice = getPlayerChoice()
-    decideWinner(computerChoice, playerChoice)
-}
-endGmaeMessage()

@@ -1,8 +1,14 @@
 body {
+    height: 100vh;
     margin: 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     padding: 0px 100px;
@@ -15,4 +21,15 @@ li {
 img {
     height: 400px;
     width: 400px;
+}
+
+.game-name {
+    font-size: 50px;
+    text-align: center;
+    font-weight: 1000;
+}
+
+.display-text {
+    font-size: 30px;
+    text-align: center;
 }
